@@ -1,14 +1,18 @@
 import { useLocalStorage } from './useLocalStorage'
 
 
-export const useDarkMode = (key) => {
+export const useDarkMode = (initalValue) => {
 
-    const [dmOn, setDmOn] = useLocalStorage(key)
+    const [dmOn, setDmOn] = useLocalStorage('darkMode')
 
     const sliderToggle = evt => {
-        evt.preventDefault();
-        setDmOn(!dmOn);
+        if(initalValue === 'darkmode'){
+          evt.preventDefault()  
+          setDmOn(!dmOn);
+        }
+        else{ return initalValue }
       };
+      
 
     return [dmOn, sliderToggle]
 }
